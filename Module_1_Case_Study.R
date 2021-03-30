@@ -1,4 +1,4 @@
-## Graph stuff
+## Data exploration
 
 getwd()
 
@@ -102,3 +102,8 @@ wholesale <- aggregate(Revenue~Country+CustomerID, data = retail, FUN = sum)
 names(wholesale)[3] <- "Total_Revenue"
 wholesale <- wholesale[order(wholesale$Total_Revenue, decreasing = TRUE),]
 wholesale
+
+## See all purchases by specific customer
+customer_number <- 18102
+customer_purchases <- retail[retail$CustomerID==customer_number]
+customer_purchases
