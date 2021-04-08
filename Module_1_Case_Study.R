@@ -104,6 +104,42 @@ wholesale <- wholesale[order(wholesale$Total_Revenue, decreasing = TRUE),]
 wholesale
 
 ## See all purchases by specific customer
-customer_number <- 18102
+customer_number <- 18143
 customer_purchases <- retail[retail$CustomerID==customer_number]
 customer_purchases
+
+## Percentage of income from wholesale (customer spent over 1000)
+income_share <- subset(top_customers, Total_Revenue >= 1000)
+income_share_sum <- sum(income_share$Total_Revenue)
+income_total <- sum(top_customers$Total_Revenue)
+income_share_sum/income_total
+
+## Percentage of wholesale by countries
+wholesale_countries <- aggregate(wholesale$Total_Revenue, by=list(Country=wholesale$Country), FUN = sum)
+names(wholesale_countries)[2] <- "Total_Revenue"
+wholesale_countries <- wholesale_countries[order(wholesale_countries$Total_Revenue, decreasing = TRUE),]
+
+wholesale_countries_pct <- wholesale_countries
+wholesale_countries_pct <- wholesale_countries_pct[order(wholesale_countries_pct$Total_Revenue, decreasing = TRUE),]
+total_wholesale <- sum(wholesale_countries_pct$Total_Revenue)
+wholesale_countries_pct$Pct_Revenue <- wholesale_countries_pct$Total_Revenue/total_wholesale
+## FIX ABOVE!!!!!!!!!!!!!
+
+## Checking for amazon fee among wholesale
+wholesale_customers <- income_share$CustomerID
+amazon_fee <- retail[retail$Description == "AMAZON FEE",]
+sum(wholesale_customers %in% amazon_fee$CustomerID)
+
+## Graph wholesale by region
+v <- ggplot(data=wholesale_countries[1:10,], aes(x=Country, y=Total_Revenue)) +
+  geom_bar(stat="identity")
+v
+
+## Graph wholesale revenue vs retail revenue (pie chart)
+wholesale$retail <- "Retail"
+wholesale$retail[1:nrow(income_share)] <- "Wholesale"
+w <- ggplot(data=wholesale, aes(x=wholesale["retail"]), y=Total_Revenue) +
+  geom_bar(stat="identity")
+w
+## EXPORT TO EXCEL TO MAKE PIE CHART
+## FIX UP COLOURS
