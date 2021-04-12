@@ -130,16 +130,41 @@ wholesale_customers <- income_share$CustomerID
 amazon_fee <- retail[retail$Description == "AMAZON FEE",]
 sum(wholesale_customers %in% amazon_fee$CustomerID)
 
-## Graph wholesale by region
-v <- ggplot(data=wholesale_countries[1:10,], aes(x=Country, y=Total_Revenue)) +
-  geom_bar(stat="identity")
-v
+## Graph of wholesale by region
+Country <- wholesale_countries$Country[1:10]
+c15 <- c(
+  "dodgerblue2", 
+  "#E31A1C", # red
+  "green4",
+  "#6A3D9A", # purple
+  "#FF7F00", # orange
+  "black", 
+  "gold1",
+  "skyblue2",
+  "palegreen2",
+  "orchid1", 
+  "deeppink1", 
+  "blue1", 
+  "darkturquoise", 
+  "green1", 
+  "brown"
+)
 
-## Graph wholesale revenue vs retail revenue (pie chart)
+png("Countries_wholesale_plot.png", width=720, height=480)
+v <- ggplot(data=wholesale_countries[1:10,], aes(x=Country, y=Total_Revenue, fill=Country)) +
+  geom_bar(stat="identity") + theme(panel.background = element_blank()) +
+  scale_fill_manual(values=c15) +
+  scale_color_manual(values=c15)
+v
+dev.off()
+
+## Graph wholesale revenue vs retail revenue
 wholesale$retail <- "Retail"
 wholesale$retail[1:nrow(income_share)] <- "Wholesale"
-w <- ggplot(data=wholesale, aes(x=wholesale["retail"]), y=Total_Revenue) +
-  geom_bar(stat="identity")
+
+png("retail_vs_wholesale_plot.png", width=720, height=480)
+w <- ggplot(data=wholesale, aes(x=retail, y=Total_Revenue, fill=retail)) +
+  geom_bar(stat="identity") + theme(panel.background = element_blank()) +
+  coord_flip()
 w
-## EXPORT TO EXCEL TO MAKE PIE CHART
-## FIX UP COLOURS
+dev.off()
