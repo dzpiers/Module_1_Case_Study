@@ -1,4 +1,4 @@
-#Talking points
+# Talking points
 
 Assume wholesale to be customers spending over $1000 (by inspection, likely a conservative estimate)
 86.8% of income from wholesale
@@ -11,9 +11,32 @@ Graph of wholesale by region
 Graph of wholesale revenue vs retail revenue
 
 ### Intro work
-What is the Problem
-Why we are giving those recommendations
-How are we are going to cover this today
+What is the problem?
+Sales too low vs other companies
+Sales not enough in certain periods
+Some products not selling well?
+
+
+Why we are giving those recommendations?
+
+How are we are going to cover this today?
+Signpost recommendations then pass over to Faye
+
 Need to point out the problem and pain to persuade (start or before recommendation)
 
 Redo slides
+
+### Graph stuff
+Graph countries excluding UK as well
+
+### LOOK INTO COMPETITORS
+
+### Proposals to group
+Cut slides 3-5, 9
+Adjust pricing strategy?
+
+### Problems
+Incurral of high and somewhat avoidable costs
+Changing digital landscape -> reconsider marketing strategies
+Competitors strong (need more wholesale)
+Business too reliant on UK sales

@@ -158,6 +158,14 @@ v <- ggplot(data=wholesale_countries[1:10,], aes(x=Country, y=Total_Revenue, fil
 v
 dev.off()
 
+## Plotting countries excluding UK
+png("Countries_wholesale_EU_plot.png", width=720, height=480)
+x <- ggplot(data=wholesale_countries[2:10,], aes(x=Country, y=Total_Revenue, fill=Country)) +
+  geom_bar(stat="identity") + theme(panel.background = element_blank()) +
+  scale_fill_manual(values=c15) +
+  scale_color_manual(values=c15)
+x
+dev.off()
 ## Graph wholesale revenue vs retail revenue
 wholesale$retail <- "Retail"
 wholesale$retail[1:nrow(income_share)] <- "Wholesale"
