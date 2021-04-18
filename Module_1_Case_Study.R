@@ -157,7 +157,7 @@ options(scipen=10000)
 png("Countries_wholesale_plot.png", width=720, height=480)
 v <- ggplot(data=wholesale_countries[1:10,], aes(x=Country, y=Total_Revenue, fill=Country)) +
   geom_bar(stat="identity", show.legend=FALSE) + theme(panel.background = element_blank()) +
-  scale_fill_manual(values=c15) +
+  scale_fill_manual(values=c15) + 
   scale_color_manual(values=c15) +
   ggtitle("Top Wholesale Countries") +
   labs(y="Total Revenue (£)")
