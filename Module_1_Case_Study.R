@@ -150,29 +150,39 @@ c15 <- c(
   "brown"
 )
 
+## Stopping ggplot2 from using scientific notation
+options(scipen=10000)
+
+
 png("Countries_wholesale_plot.png", width=720, height=480)
 v <- ggplot(data=wholesale_countries[1:10,], aes(x=Country, y=Total_Revenue, fill=Country)) +
-  geom_bar(stat="identity") + theme(panel.background = element_blank()) +
+  geom_bar(stat="identity", show.legend=FALSE) + theme(panel.background = element_blank()) +
   scale_fill_manual(values=c15) +
-  scale_color_manual(values=c15)
+  scale_color_manual(values=c15) +
+  ggtitle("Top Wholesale Countries") +
+  labs(y="Total Revenue (£)")
 v
 dev.off()
 
 ## Plotting countries excluding UK
 png("Countries_wholesale_EU_plot.png", width=720, height=480)
 x <- ggplot(data=wholesale_countries[2:10,], aes(x=Country, y=Total_Revenue, fill=Country)) +
-  geom_bar(stat="identity") + theme(panel.background = element_blank()) +
+  geom_bar(stat="identity", show.legend=FALSE) + theme(panel.background = element_blank()) +
   scale_fill_manual(values=c15) +
-  scale_color_manual(values=c15)
+  scale_color_manual(values=c15) +
+  ggtitle("Top Wholesale Countries (excluding United Kingdom)") +
+  labs(y="Total Revenue (£)")
 x
 dev.off()
+
 ## Graph wholesale revenue vs retail revenue
 wholesale$retail <- "Retail"
 wholesale$retail[1:nrow(income_share)] <- "Wholesale"
 
 png("retail_vs_wholesale_plot.png", width=720, height=480)
 w <- ggplot(data=wholesale, aes(x=retail, y=Total_Revenue, fill=retail)) +
-  geom_bar(stat="identity") + theme(panel.background = element_blank()) +
-  coord_flip()
+  geom_bar(stat="identity", show.legend=FALSE) + theme(panel.background = element_blank()) +
+  coord_flip() + ggtitle("Retail vs Wholesale Revenue") +
+  labs(y="Total Revenue (£)", x=element_blank())
 w
 dev.off()
