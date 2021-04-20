@@ -186,3 +186,8 @@ w <- ggplot(data=wholesale, aes(x=retail, y=Total_Revenue, fill=retail)) +
   labs(y="Total Revenue (£)", x=element_blank())
 w
 dev.off()
+
+## Calculating competitors revenue in GBP
+## HEMA
+print(0.867933*1150000000)
+print(0.867933*7480000)
