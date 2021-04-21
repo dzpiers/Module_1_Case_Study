@@ -160,7 +160,7 @@ v <- ggplot(data=wholesale_countries[1:10,], aes(x=Country, y=Total_Revenue, fil
   scale_fill_manual(values=c15) + 
   scale_color_manual(values=c15) +
   ggtitle("Top Wholesale Countries") +
-  labs(y="Total Revenue (£)")
+  labs(y="Total Revenue (£)", x=element_blank())
 v
 dev.off()
 
@@ -171,7 +171,7 @@ x <- ggplot(data=wholesale_countries[2:10,], aes(x=Country, y=Total_Revenue, fil
   scale_fill_manual(values=c15) +
   scale_color_manual(values=c15) +
   ggtitle("Top Wholesale Countries (excluding United Kingdom)") +
-  labs(y="Total Revenue (£)")
+  labs(y="Total Revenue (£)", x=element_blank())
 x
 dev.off()
 
@@ -190,4 +190,25 @@ dev.off()
 ## Calculating competitors revenue in GBP
 ## HEMA
 print(0.867933*1150000000)
+## Not on the High Street
 print(0.867933*7480000)
+
+## Percentage of countries sales that are wholesale
+wholesale_uk <- wholesale[wholesale$Country=="United Kingdom",]
+wholesale_netherlands <- wholesale[wholesale$Country=="Netherlands",]
+wholesale_germany <- wholesale[wholesale$Country=="Germany",]
+wholesale_france <- wholesale[wholesale$Country=="France",]
+
+
+uk_wholesale <- wholesale_uk[wholesale_uk$retail=="Wholesale",]
+sum(uk_wholesale$Total_Revenue)/sum(wholesale_uk$Total_Revenue)
+
+netherlands_wholesale <- wholesale_netherlands[wholesale_netherlands$retail=="Wholesale",]
+sum(netherlands_wholesale$Total_Revenue)/sum(wholesale_netherlands$Total_Revenue)
+
+germany_wholesale <- wholesale_germany[wholesale_germany$retail=="Wholesale",]
+sum(germany_wholesale$Total_Revenue)/sum(wholesale_germany$Total_Revenue)
+
+france_wholesale <- wholesale_france[wholesale_france$retail=="Wholesale",]
+sum(france_wholesale$Total_Revenue)/sum(wholesale_france$Total_Revenue)
+
