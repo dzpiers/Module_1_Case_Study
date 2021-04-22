@@ -212,3 +212,8 @@ sum(germany_wholesale$Total_Revenue)/sum(wholesale_germany$Total_Revenue)
 france_wholesale <- wholesale_france[wholesale_france$retail=="Wholesale",]
 sum(france_wholesale$Total_Revenue)/sum(wholesale_france$Total_Revenue)
 
+## Number of customers that were wholesale
+0.868*nrow(top_customers)
+
+## Revenue from UK
+sum(wholesale_uk$Total_Revenue)
